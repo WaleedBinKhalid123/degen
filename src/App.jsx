@@ -1,6 +1,15 @@
 import "./App.scss";
 import Navbar from "./components/Navbar";
-import { Container, Row, Col } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Nav,
+  NavLink,
+  NavItem,
+  TabContent,
+  TabPane,
+} from "reactstrap";
 import { FiAlertTriangle } from "react-icons/fi";
 
 function App() {
@@ -55,7 +64,26 @@ function App() {
 
             <Col md={12} className="contentDiv p-md-5 p-4 mt-5">
               <p className="mb-0 headingText">Leaderboard</p>
-              <div className="d-flex justify-content-between bg-transparent fs-6 tableHeader mt-4 p-3">
+
+              <div className="mt-4 navtabsWrapper">
+                <Nav tabs>
+                  <NavItem>
+                    <NavLink
+                      className="active py-3"
+                      onClick={function noRefCheck() {}}
+                    >
+                      Season 2 (Live)
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink className="py-3" onClick={function noRefCheck() {}}>
+                      Season 1
+                    </NavLink>
+                  </NavItem>
+                </Nav>
+              </div>
+
+              <div className="d-flex justify-content-between bg-transparent fs-6 tableHeader mt-2 p-3">
                 <p className="fw-bold mb-0 bg-transparent">User</p>
                 <p className="fw-bold mb-0 bg-transparent">Points</p>
               </div>
