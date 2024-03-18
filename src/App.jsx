@@ -1,18 +1,12 @@
 import "./App.scss";
 import Navbar from "./components/Navbar";
-import {
-  Container,
-  Row,
-  Col,
-  Nav,
-  NavLink,
-  NavItem,
-  TabContent,
-  TabPane,
-} from "reactstrap";
+import { Container, Row, Col, Nav, NavLink, NavItem } from "reactstrap";
 import { FiAlertTriangle } from "react-icons/fi";
+import { useState } from "react";
 
 function App() {
+  const [activeTab, setActiveTab] = useState(1);
+
   return (
     <>
       <Navbar />
@@ -66,17 +60,24 @@ function App() {
               <p className="mb-0 headingText">Leaderboard</p>
 
               <div className="mt-4 navtabsWrapper">
-                <Nav tabs>
-                  <NavItem>
+                <Nav tabs className="panTabs">
+                  <NavItem className="panTabItems">
                     <NavLink
-                      className="active py-3"
-                      onClick={function noRefCheck() {}}
+                      className={`${
+                        activeTab === 1 ? "active" : ""
+                      } py-3 panTabLink`}
+                      onClick={() => setActiveTab(1)}
                     >
                       Season 2 (Live)
                     </NavLink>
                   </NavItem>
-                  <NavItem>
-                    <NavLink className="py-3" onClick={function noRefCheck() {}}>
+                  <NavItem className="panTabItems">
+                    <NavLink
+                      className={`${
+                        activeTab === 2 ? "active" : ""
+                      } py-3 panTabLink`}
+                      onClick={() => setActiveTab(2)}
+                    >
                       Season 1
                     </NavLink>
                   </NavItem>
@@ -246,9 +247,6 @@ function App() {
           </Col>
         </Row>
       </Container>
-
-      {/* <div className="text-center pt-3">
-      </div> */}
     </>
   );
 }

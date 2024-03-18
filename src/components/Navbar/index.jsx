@@ -3,23 +3,26 @@ import "./styles.scss";
 import {
   Collapse,
   Navbar,
-  NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
   UncontrolledDropdown,
+  Button,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import { MdOutlineLegendToggle } from "react-icons/md";
+import { GoQuestion } from "react-icons/go";
 import { RxCross2 } from "react-icons/rx";
-import { Button } from "reactstrap";
 
 const Index = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showWalletModal, setShowWalletModal] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -30,7 +33,11 @@ const Index = (props) => {
         <path d="M394.641 0.113525C538.834 0.113525 577.929 3.48079 636.558 10.2154H636.535C663.561 13.3272 685.224 33.438 683.212 60.6782L661.616 354.872C654.858 356.83 647.488 359.303 639.223 362.077C595.905 376.615 527.997 399.404 394.64 399.404C261.283 399.404 193.376 376.615 150.057 362.077C141.784 359.3 134.407 356.825 127.643 354.866L106.047 60.6782C104.059 33.438 125.652 12.8395 152.724 10.2154C210.637 4.59548 270.932 0.113525 394.641 0.113525ZM137.991 495.835L138.067 496.869L139.557 497.212C139.024 496.748 138.502 496.289 137.991 495.835ZM649.85 497.178L651.193 496.869L651.262 495.928C650.8 496.341 650.329 496.757 649.85 497.178Z"></path>
       </svg>
       {isOpen && (
-        <RxCross2 onClick={toggle} className="navbar-toggler bg-transparent" size={45} />
+        <RxCross2
+          onClick={toggle}
+          className="navbar-toggler bg-transparent"
+          size={45}
+        />
       )}
       {!isOpen && (
         <MdOutlineLegendToggle
@@ -41,7 +48,7 @@ const Index = (props) => {
       )}
 
       <Collapse isOpen={isOpen} navbar>
-        <Nav className="mx-auto gap-5 gap-sm-2 gap-xs-2" navbar>
+        <Nav className="mx-auto gap-5" navbar>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
               Airdrops
@@ -75,8 +82,80 @@ const Index = (props) => {
             <NavLink href="/components/">Components</NavLink>
           </NavItem>
         </Nav>
-        <Button className="navbarBtn">Connect</Button>
+        <Button className="navbarBtn" onClick={() => setShowWalletModal(true)}>
+          Connect
+        </Button>
       </Collapse>
+
+      <div>
+        <Modal
+          isOpen={showWalletModal}
+          size="sm"
+          toggle={() => setShowWalletModal(!showWalletModal)}
+        >
+          <ModalBody>
+            <div className="d-flex customHeader justify-content-between align-items-center py-3 px-3 bg-transparent">
+              <GoQuestion
+                className="bg-transparent"
+                style={{ cursor: "pointer" }}
+              />
+              <p className="mb-0 bg-transparent fw-bold">Connect Wallet</p>
+              <RxCross2
+                className="bg-transparent"
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowWalletModal(false)}
+              />
+            </div>
+            <div className="px-2 bg-transparent mb-3">
+              <div className="d-flex align-items-center gap-2 walletWrapper p-1 mt-3">
+                <img
+                  src="/walletconnect.webp"
+                  width={40}
+                  alt="WalletConnect"
+                  className="walletImage"
+                />
+                <p className="mb-0 bg-transparent">WalletConnect</p>
+              </div>
+              <div className="d-flex align-items-center gap-2 walletWrapper p-1 mt-3">
+                <img
+                  src="/metamask.webp"
+                  width={40}
+                  alt="WalletConnect"
+                  className="walletImage"
+                />
+                <p className="mb-0 bg-transparent">MetaMask</p>
+              </div>
+              <div className="d-flex align-items-center gap-2 walletWrapper p-1 mt-3">
+                <img
+                  src="/trustwallet.webp"
+                  width={40}
+                  alt="WalletConnect"
+                  className="walletImage"
+                />
+                <p className="mb-0 bg-transparent">Trust Wallet</p>
+              </div>
+              <div className="d-flex align-items-center gap-2 walletWrapper p-1 mt-3">
+                <img
+                  src="/coinbase.webp"
+                  width={40}
+                  alt="WalletConnect"
+                  className="walletImage"
+                />
+                <p className="mb-0 bg-transparent">Coinbase</p>
+              </div>
+              <div className="d-flex align-items-center gap-2 walletWrapper p-1 mt-3">
+                <img
+                  src="/walletconnect.webp"
+                  width={40}
+                  alt="WalletConnect"
+                  className="walletImage"
+                />
+                <p className="mb-0 bg-transparent">All Wallets</p>
+              </div>
+            </div>
+          </ModalBody>
+        </Modal>
+      </div>
     </Navbar>
   );
 };
