@@ -79,7 +79,7 @@ const Index = (props) => {
             </DropdownMenu>
           </UncontrolledDropdown>
           <NavItem>
-            <NavLink href="/components/">Components</NavLink>
+            <NavLink href="/">Tokenomics</NavLink>
           </NavItem>
         </Nav>
         <Button className="navbarBtn" onClick={() => setShowWalletModal(true)}>
